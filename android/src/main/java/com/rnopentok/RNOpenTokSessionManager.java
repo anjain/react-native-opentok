@@ -126,8 +126,10 @@ public class RNOpenTokSessionManager implements Session.SessionListener, Session
             subscriberView.onStreamReceived(session, stream);
         }
         WritableMap payload = Arguments.createMap();
+        Connection = session.getConnection();
         payload.putString("sessionId", session.getSessionId());
         payload.putString("streamId", stream.getStreamId());
+        payload.putString("connectionId", connection.getConnectionId());
 
         mContext
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
@@ -166,6 +168,7 @@ public class RNOpenTokSessionManager implements Session.SessionListener, Session
         payload.putString("sessionId", session.getSessionId());
         payload.putString("type", type);
         payload.putString("data", data);
+        payload.putString("connectionId", connection.getConnectionId());
 
         mContext
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
