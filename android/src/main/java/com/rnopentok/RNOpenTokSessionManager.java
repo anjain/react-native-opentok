@@ -126,7 +126,7 @@ public class RNOpenTokSessionManager implements Session.SessionListener, Session
             subscriberView.onStreamReceived(session, stream);
         }
         WritableMap payload = Arguments.createMap();
-        Connection = session.getConnection();
+        Connection connection = session.getConnection();
         payload.putString("sessionId", session.getSessionId());
         payload.putString("streamId", stream.getStreamId());
         payload.putString("connectionId", connection.getConnectionId());
