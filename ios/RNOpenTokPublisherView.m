@@ -64,6 +64,9 @@
     _publisher.publishAudio = !_mute;
     _publisher.publishVideo = _video;
     _publisher.cameraPosition = AVCaptureDevicePositionFront;
+    _publisher.cameraResolution = cameraResolution;
+
+    
     OTError *error = nil;
     
     [_session publish:_publisher error:&error];

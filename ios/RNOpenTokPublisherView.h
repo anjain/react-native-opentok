@@ -17,5 +17,8 @@
  */
 @property (nonatomic, assign) BOOL video;
 
+@property (nonatomic, assign) OTCameraCaptureResolution cameraResolution;
+
+
 
 @end
