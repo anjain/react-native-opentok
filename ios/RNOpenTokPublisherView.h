@@ -17,7 +17,8 @@
  */
 @property (nonatomic, assign) BOOL video;
 
-@property (nonatomic, assign) OTCameraCaptureResolution cameraResolution;
+@property (nonatomic, assign) NSInteger cameraResolution;
+@property (nonatomic, assign) NSInteger cameraFrameRate;
 
 
 

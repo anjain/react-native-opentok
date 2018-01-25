@@ -60,11 +60,80 @@
 }
 
 - (void)startPublishing {
-    _publisher = [[OTPublisher alloc] initWithDelegate:self];
+    
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = [UIDevice currentDevice].name;
+    settings.audioTrack = YES;
+    settings.videoTrack = YES;
+    
+    switch (cameraResolution) {
+        case 0:
+            settings.cameraResolution = OTCameraCaptureResolutionLow;
+            break;
+            
+        case 1:
+            settings.cameraResolution = OTCameraCaptureResolutionMedium;
+            break;
+            
+        case 2:
+           settings.cameraResolution = OTCameraCaptureResolutionHigh;
+            break;
+            
+        default:
+            break;
+    }
+    
+//    //cameraFrameRate
+//
+//    /**
+//     * 30 frames per second.
+//     */
+//    OTCameraCaptureFrameRate30FPS = 30,
+//    /**
+//     * 15 frames per second.
+//     */
+//    OTCameraCaptureFrameRate15FPS = 15,
+//    /**
+//     * 7 frames per second.
+//     */
+//    OTCameraCaptureFrameRate7FPS = 7,
+//    /**
+//     * 1 frame per second.
+//     */
+//    OTCameraCaptureFrameRate1FPS = 1
+    
+    switch (cameraFrameRate) {
+        case 30:
+            settings.cameraFrameRate = OTCameraCaptureFrameRate30FPS;
+            break;
+            
+        case 15:
+            settings.cameraFrameRate = OTCameraCaptureFrameRate15FPS;
+            break;
+            
+        case 7:
+            settings.cameraFrameRate = OTCameraCaptureFrameRate7FPS;
+            break;
+            
+        case 1:
+            settings.cameraFrameRate = OTCameraCaptureFrameRate1FPS;
+            break;
+            
+        default:
+            break;
+    }
+    
+   
+    
+    
+    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     _publisher.publishAudio = !_mute;
     _publisher.publishVideo = _video;
     _publisher.cameraPosition = AVCaptureDevicePositionFront;
-    _publisher.cameraResolution = cameraResolution;
+    
+   
+    
+   
 
     
     OTError *error = nil;

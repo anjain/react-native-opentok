@@ -24,7 +24,7 @@ RCT_EXPORT_VIEW_PROPERTY(mute, BOOL)
 
 RCT_EXPORT_VIEW_PROPERTY(video, BOOL)
 
-RCT_EXPORT_VIEW_PROPERTY(cameraResolution, OTCameraCaptureResolution)
+RCT_EXPORT_VIEW_PROPERTY(cameraResolution, NSInteger)
 
 
 
