@@ -11,8 +11,45 @@ import com.opentok.android.PublisherKit;
 
 public class RNOpenTokPublisherView extends RNOpenTokView implements PublisherKit.PublisherListener {
     private Publisher mPublisher;
+	
     private Boolean mAudioEnabled;
     private Boolean mVideoEnabled;
+	
+	//default value if user have not assign
+	private Publisher.CameraCaptureFrameRate cameraFrameRatePublisher.CameraCaptureFrameRate.FPS_15;
+    private Publisher.CameraCaptureResolution cameraCaptureResulation= Publisher.CameraCaptureResolution.MEDIUM;
+	
+	
+	 public void setCameraCaptureResulation(int resulationMode) {
+        switch (resulationMode) {
+            case 0:
+                cameraCaptureResulation = Publisher.CameraCaptureResolution.LOW;
+                break;
+            case 1:
+                cameraCaptureResulation = Publisher.CameraCaptureResolution.MEDIUM;
+                break;
+            case 2:
+                cameraCaptureResulation = Publisher.CameraCaptureResolution.HIGH;
+                break;
+        }
+    }
+
+    public void setCameraFrameRate(int frameRate) {
+        switch (frameRate) {
+            case 1:
+                cameraFrameRate = Publisher.CameraCaptureFrameRate.FPS_1;
+                break;
+            case 7:
+                cameraFrameRate = Publisher.CameraCaptureFrameRate.FPS_7;
+                break;
+            case 15:
+                cameraFrameRate = Publisher.CameraCaptureFrameRate.FPS_15;
+                break;
+            case 30:
+                cameraFrameRate = Publisher.CameraCaptureFrameRate.FPS_30;
+                break;
+        }
+    }
 
     public RNOpenTokPublisherView(ThemedReactContext context) {
         super(context);
@@ -53,7 +90,12 @@ public class RNOpenTokPublisherView extends RNOpenTokView implements PublisherKi
     }
 
     private void startPublishing() {
-        mPublisher = new Publisher(getContext());
+       
+		Publisher.Builder builder = new Publisher.Builder(getContext());
+        builder.resolution(cameraCaptureResulation);
+        builder.frameRate(cameraFrameRate);
+        mPublisher = builder.build();
+		
         mPublisher.setPublisherListener(this);
 
         mPublisher.setPublishAudio(mAudioEnabled);

@@ -9,14 +9,15 @@
 /**
  * Define props which tells the Publisher if should publish as audio as well.
  */
-@property (nonatomic, assign) BOOL mute;
 
 @property (nonatomic, assign) NSInteger camera;
+
+
+@property (nonatomic, assign) BOOL mute;
 /**
  * Define props which tells the Publisher if should publish a video as well.
  */
 @property (nonatomic, assign) BOOL video;
-
 @property (nonatomic, assign) NSInteger cameraResolution;
 @property (nonatomic, assign) NSInteger cameraFrameRate;
 
